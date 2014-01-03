@@ -8,7 +8,7 @@
   },
   "ignore": [
     "src",
-    "spec"
+    "spec",
     ".rvmrc.example",
     "Gemfile",
     "Gemfile.lock",
