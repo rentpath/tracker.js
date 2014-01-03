@@ -1,4 +1,4 @@
-define ['jquery', 'primedia_events', 'utils'], ($, events, utils) ->
+define ['jquery', 'primedia_events'], ($, events) ->
   _read = (key, not_found={}) ->
     data = localStorage.getItem(key)
     if data? then JSON.parse(data) else not_found
@@ -6,6 +6,14 @@ define ['jquery', 'primedia_events', 'utils'], ($, events, utils) ->
   _write = (key, value) ->
     localStorage.setItem(key, JSON.stringify(value))
     value
+
+  _getPageInfo = () ->
+    $.each $('meta.pageInfo'), (index, tag) ->
+      pageInfo[tag.name] = tag.content
+      return # make coffeescript compiler happy
+
+    pageInfo.nodes = if pageInfo.nodes then pageInfo.nodes.split(",") else []
+    return pageInfo
 
   return {
     path: -> window.location.pathname
@@ -25,7 +33,7 @@ define ['jquery', 'primedia_events', 'utils'], ($, events, utils) ->
 
     save: (item, value, type) ->
       key = @key(type)
-      prefill_data = utils.getPageInfo(key)
+      prefill_data = _getPageInfo(key)
 
       record = _read(key, prefill_data)
       record[item] = value
