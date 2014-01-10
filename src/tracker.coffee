@@ -1,4 +1,4 @@
-define ['jquery', 'primedia-events'], ($, events) ->
+define ['jquery', 'primedia_events'], ($, events) ->
   _read = (key, not_found={}) ->
     data = localStorage.getItem(key)
     if data? then JSON.parse(data) else not_found
