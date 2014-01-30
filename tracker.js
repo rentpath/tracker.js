@@ -19,6 +19,8 @@
       return value;
     };
     _getPageInfo = function() {
+      var pageInfo;
+      pageInfo = {};
       $.each($('meta.pageInfo'), function(index, tag) {
         pageInfo[tag.name] = tag.content;
       });

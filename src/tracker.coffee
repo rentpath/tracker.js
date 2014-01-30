@@ -8,6 +8,7 @@ define ['jquery', 'primedia_events'], ($, events) ->
     value
 
   _getPageInfo = () ->
+    pageInfo = {}
     $.each $('meta.pageInfo'), (index, tag) ->
       pageInfo[tag.name] = tag.content
       return # make coffeescript compiler happy
